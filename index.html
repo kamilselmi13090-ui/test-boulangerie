@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banette De La Frescoule | Boulangerie Artisanale</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lora:wght@400;500&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Lora', serif;
+            background: #FEFDFB;
+            color: #3E2723;
+            line-height: 1.7;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #FEFDFB;
+            border-bottom: 1px solid #E8E3DE;
+            z-index: 1000;
+            padding: 1rem 4%;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: #3E2723;
+            letter-spacing: 0.08em;
+        }
+
+        nav {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #8B7355;
+            font-size: 0.75rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #E8B4A8;
+        }
+
+        main {
+            margin-top: 60px;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 3rem 4% 2rem;
+            text-align: center;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(232, 180, 168, 0.1) 0%, transparent 100%);
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.02em;
+            color: #3E2723;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero p {
+            font-size: 0.95rem;
+            color: #8B7355;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Content Sections */
+        section {
+            padding: 3rem 4%;
+            max-width: 100%;
+        }
+
+        .content-block {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .content-block.reverse {
+            flex-direction: column-reverse;
+        }
+
+        .text-content {
+            flex: 1;
+        }
+
+        .text-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.7rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            color: #3E2723;
+            letter-spacing: 0.02em;
+        }
+
+        .text-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin: 1.5rem 0 0.75rem;
+            color: #3E2723;
+        }
+
+        .text-content p {
+            color: #8B7355;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .visual-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            animation: fadeInUp 0.8s ease-out;
+            opacity: 0.7;
+        }
+
+        /* Values Grid */
+        .values-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .value-item {
+            background: #FEFDFB;
+            border-left: 4px solid #E8B4A8;
+            padding: 1.5rem;
+            border-radius: 4px;
+            animation: fadeInUp 0.6s ease-out both;
+        }
+
+        .value-item:nth-child(1) { animation-delay: 0.1s; }
+        .value-item:nth-child(2) { animation-delay: 0.2s; }
+        .value-item:nth-child(3) { animation-delay: 0.3s; }
+
+        .value-item h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+            color: #3E2723;
+        }
+
+        .value-item p {
+            color: #8B7355;
+            font-size: 0.85rem;
+            line-height: 1.7;
+        }
+
+        /* FAQ */
+        .faq-container {
+            margin-top: 2rem;
+        }
+
+        .faq-item {
+            background: #FEFDFB;
+            border: 1px solid #E8E3DE;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.6s ease-out both;
+        }
+
+        .faq-item:nth-child(1) { animation-delay: 0.1s; }
+        .faq-item:nth-child(2) { animation-delay: 0.2s; }
+        .faq-item:nth-child(3) { animation-delay: 0.3s; }
+        .faq-item:nth-child(4) { animation-delay: 0.4s; }
+
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 1.25rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            font-family: 'Lora', serif;
+            font-size: 0.95rem;
+            color: #3E2723;
+            text-align: left;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background: #F5F3F0;
+        }
+
+        .faq-icon {
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            transition: transform 0.3s;
+        }
+
+        .faq-question.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-answer.active {
+            max-height: 500px;
+        }
+
+        .faq-answer p {
+            padding: 0 1.25rem 1.25rem;
+            color: #8B7355;
+            font-size: 0.85rem;
+            line-height: 1.8;
+        }
+
+        /* Testimonials */
+        .testimonials-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .testimonial {
+            background: #FEFDFB;
+            border-left: 4px solid #E8B4A8;
+            padding: 1.5rem;
+            border-radius: 4px;
+            animation: fadeInUp 0.6s ease-out both;
+        }
+
+        .testimonial:nth-child(1) { animation-delay: 0.1s; }
+        .testimonial:nth-child(2) { animation-delay: 0.2s; }
+        .testimonial:nth-child(3) { animation-delay: 0.3s; }
+
+        .stars {
+            color: #E8B4A8;
+            font-size: 0.8rem;
+            margin-bottom: 0.75rem;
+            letter-spacing: 0.1em;
+        }
+
+        .testimonial-text {
+            color: #8B7355;
+            font-size: 0.85rem;
+            font-style: italic;
+            line-height: 1.8;
+            margin-bottom: 0.75rem;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: #3E2723;
+            font-size: 0.8rem;
+        }
+
+        /* Contact */
+        .contact-info {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+            background: #F5F3F0;
+            padding: 2rem;
+            border-radius: 4px;
+        }
+
+        .contact-block h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 400;
+            margin-bottom: 0.75rem;
+            color: #3E2723;
+        }
+
+        .contact-block p {
+            color: #8B7355;
+            font-size: 0.85rem;
+            line-height: 1.7;
+        }
+
+        .contact-block a {
+            color: #E8B4A8;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-block a:hover {
+            text-decoration: underline;
+        }
+
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .section-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: #3E2723;
+            margin-bottom: 0.5rem;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .section-subtitle {
+            color: #8B7355;
+            font-size: 0.9rem;
+            animation: fadeInUp 0.6s ease-out 0.2s both;
+        }
+
+        /* Slider */
+        .slider {
+            position: relative;
+            overflow: hidden;
+            margin: 2rem 0;
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            padding: 2rem 0;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .slide-content {
+            background: #FEFDFB;
+            border: 1px solid #E8E3DE;
+            padding: 2rem;
+            border-radius: 4px;
+        }
+
+        .slide-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            color: #3E2723;
+        }
+
+        .slide-content p {
+            color: #8B7355;
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .slider-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #E8E3DE;
+            background: #FEFDFB;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slider-btn:hover {
+            border-color: #E8B4A8;
+            color: #E8B4A8;
+        }
+
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #E8E3DE;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .dot.active {
+            background: #E8B4A8;
+            transform: scale(1.3);
+        }
+
+        footer {
+            background: #FEFDFB;
+            border-top: 1px solid #E8E3DE;
+            padding: 1.5rem 4%;
+            text-align: center;
+            color: #8B7355;
+            font-size: 0.75rem;
+            margin-top: 3rem;
+        }
+
+        /* Divider */
+        .divider {
+            height: 1px;
+            background: #E8E3DE;
+            margin: 3rem 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="#" class="logo">BANETTE</a>
+            <nav>
+                <a href="#histoire">Histoire</a>
+                <a href="#valeurs">Valeurs</a>
+                <a href="#faq">FAQ</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="hero">
+            <div>
+                <h1>Banette De La Frescoule</h1>
+                <p>Boulangerie Artisanale Française</p>
+                <p style="font-size: 0.85rem; color: #A89080; margin-top: 1rem;">Une tradition d'excellence depuis plusieurs générations</p>
+            </div>
+        </section>
+
+        <!-- Histoire -->
+        <section id="histoire">
+            <div class="section-title">
+                <h2>Notre Histoire</h2>
+                <p class="section-subtitle">Générations de passion et de savoir-faire</p>
+            </div>
+
+            <div class="content-block">
+                <div class="text-content">
+                    <h3>Des Racines Profondes</h3>
+                    <p>Depuis plusieurs générations, notre famille perpétue l'art français du pain. Chaque jour, avant l'aube, nos boulangers se lèvent pour créer des produits d'exception qui nourissent notre communauté.</p>
+                    <p>La boulangerie n'est pas qu'un métier pour nous, c'est une vocation. Nous croyons en la qualité, l'authenticité et le respect des traditions.</p>
+                </div>
+                <div class="visual-content">📖</div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="content-block reverse">
+                <div class="text-content">
+                    <h3>Le Savoir-Faire Traditionnel</h3>
+                    <p>Nos techniques sont éprouvées par le temps. Fermentation lente, cuisson au feu de bois, façonnage à la main - chaque étape est maîtrisée par nos boulangers expérimentés.</p>
+                    <p>Il n'y a pas de raccourci pour faire du bon pain. Nous prenons le temps qu'il faut, car nous savons que la qualité se construit patiemment.</p>
+                </div>
+                <div class="visual-content">👨‍🍳</div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="content-block">
+                <div class="text-content">
+                    <h3>Ingrédients Purs et Simples</h3>
+                    <p>Aucun conservateur. Aucun additif. Seulement les ingrédients essentiels : farine de qualité, eau pure, sel et temps. C'est la recette française simple qui a traversé les siècles.</p>
+                    <p>Nous croyons que moins c'est plus. La simplicité des ingrédients révèle la qualité de chacun d'eux.</p>
+                </div>
+                <div class="visual-content">🌾</div>
+            </div>
+        </section>
+
+        <!-- Valeurs -->
+        <section id="valeurs">
+            <div class="section-title">
+                <h2>Nos Valeurs</h2>
+                <p class="section-subtitle">Ce qui guide nos décisions chaque jour</p>
+            </div>
+
+            <div class="values-grid">
+                <div class="value-item">
+                    <h3>✓ Qualité Garantie</h3>
+                    <p>Ingrédients sélectionnés, contrôle qualité rigoureux. Chaque pain est préparé avec passion et attention. Nous ne faisons pas de compromis sur la qualité.</p>
+                </div>
+                <div class="value-item">
+                    <h3>🤝 Commerce Local</h3>
+                    <p>Partenariats directs avec agriculteurs régionaux. Soutenir l'économie locale n'est pas une option pour nous, c'est une responsabilité que nous prenons sérieusement.</p>
+                </div>
+                <div class="value-item">
+                    <h3>🌱 Durabilité</h3>
+                    <p>Respect de l'environnement et pratiques responsables. Notre engagement envers la nature guide chacune de nos décisions, petites ou grandes.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq">
+            <div class="section-title">
+                <h2>Questions Fréquentes</h2>
+                <p class="section-subtitle">Tout ce que vous devez savoir</p>
+            </div>
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>D'où proviennent vos ingrédients ?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Nous travaillons directement avec les producteurs locaux. Les farines viennent de meuneries régionales, le beurre est de Normandie, et nous sourçons les autres ingrédients auprès de fournisseurs qui partagent nos valeurs de qualité. Chaque fournisseur est sélectionné avec soin.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Quels sont vos horaires d'ouverture ?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Lundi à Vendredi : 6h30 - 19h30. Samedi : 6h30 - 20h00. Dimanche : 7h00 - 13h00. Nous fermons le lundi matin pour notre repos hebdomadaire. Les jours fériés, consultez-nous directement par téléphone.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Pouvez-vous faire des commandes pour événements ?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Oui ! Nous proposons des commandes spéciales pour mariages, anniversaires, réceptions et autres événements. Contactez-nous au moins une semaine à l'avance pour que notre équipe puisse préparer quelque chose de vraiment spécial pour vous.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Proposez-vous des options sans gluten ou vegan ?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Nous proposons une sélection limitée de produits adaptés aux régimes spéciaux. Demandez à notre équipe en boutique quels produits sont actuellement disponibles. Nous travaillons continuellement pour élargir notre offre.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Avis -->
+        <section>
+            <div class="section-title">
+                <h2>Avis Clients</h2>
+                <p class="section-subtitle">Ce que nos clients en pensent</p>
+            </div>
+
+            <div class="slider">
+                <div class="slides" id="avisSlider">
+                    <div class="slide">
+                        <div class="slide-content">
+                            <div class="stars">★★★★★</div>
+                            <p class="testimonial-text">"Les croissants sont extraordinaires. On sent vraiment la qualité du beurre et l'artisanat. C'est devenu ma boulangerie préférée depuis plusieurs années."</p>
+                            <p class="testimonial-author">— Marie D.</p>
+                        </div>
+                    </div>
+
+                    <div class="slide">
+                        <div class="slide-content">
+                            <div class="stars">★★★★★</div>
+                            <p class="testimonial-text">"La qualité est impressionnante et constante. Les pains sont frais, croustillants, délicieux. On sent que c'est du vrai travail artisanal derrière chaque produit."</p>
+                            <p class="testimonial-author">— Pierre M.</p>
+                        </div>
+                    </div>
+
+                    <div class="slide">
+                        <div class="slide-content">
+                            <div class="stars">★★★★★</div>
+                            <p class="testimonial-text">"Incomparable avec les supermarchés. On sent que c'est fait avec passion. Merci de perpétuer la véritable tradition française du pain."</p>
+                            <p class="testimonial-author">— Sophie L.</p>
+                        </div>
+                    </div>
+
+                    <div class="slide">
+                        <div class="slide-content">
+                            <div class="stars">★★★★★</div>
+                            <p class="testimonial-text">"Excellent rapport qualité. Le pain tradition est incomparable. Les pâtisseries sont divines et vraiment faites maison. Bravo à toute l'équipe !"</p>
+                            <p class="testimonial-author">— Jean P.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slider-controls">
+                    <button class="slider-btn" onclick="previousSlide('avisSlider')">❮</button>
+                    <button class="slider-btn" onclick="nextSlide('avisSlider')">❯</button>
+                </div>
+
+                <div class="slider-dots" id="avisDots"></div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact">
+            <div class="section-title">
+                <h2>Nous Contacter</h2>
+                <p class="section-subtitle">Comment nous trouver et prendre contact</p>
+            </div>
+
+            <div class="contact-info">
+                <div class="contact-block">
+                    <h3>📍 Adresse</h3>
+                    <p>Rue de la Frescoule<br>Frescoule, France</p>
+                </div>
+
+                <div class="contact-block">
+                    <h3>⏰ Horaires</h3>
+                    <p>Lun-Ven: 6h30 - 19h30<br>Samedi: 6h30 - 20h00<br>Dimanche: 7h00 - 13h00</p>
+                </div>
+
+                <div class="contact-block">
+                    <h3>📞 Téléphone & Email</h3>
+                    <p><a href="tel:+33233123456">+33 2 33 12 34 56</a><br><a href="mailto:contact@banette-frescoule.fr">contact@banette-frescoule.fr</a></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Boulangerie Banette De La Frescoule. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        // Slider functionality
+        const sliders = {};
+
+        function initSlider(sliderId) {
+            const slider = document.getElementById(sliderId);
+            const slides = slider.querySelectorAll('.slide');
+            const dotsContainer = document.getElementById(sliderId.replace('Slider', 'Dots'));
+
+            sliders[sliderId] = {
+                current: 0,
+                total: slides.length,
+                slider: slider
+            };
+
+            // Create dots
+            for (let i = 0; i < slides.length; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'dot' + (i === 0 ? ' active' : '');
+                dot.onclick = () => goToSlide(sliderId, i);
+                dotsContainer.appendChild(dot);
+            }
+
+            updateSlider(sliderId);
+        }
+
+        function updateSlider(sliderId) {
+            const data = sliders[sliderId];
+            const offset = -data.current * 100;
+            data.slider.style.transform = `translateX(${offset}%)`;
+
+            // Update dots
+            const dotsContainer = document.getElementById(sliderId.replace('Slider', 'Dots'));
+            dotsContainer.querySelectorAll('.dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === data.current);
+            });
+        }
+
+        function nextSlide(sliderId) {
+            const data = sliders[sliderId];
+            data.current = (data.current + 1) % data.total;
+            updateSlider(sliderId);
+        }
+
+        function previousSlide(sliderId) {
+            const data = sliders[sliderId];
+            data.current = (data.current - 1 + data.total) % data.total;
+            updateSlider(sliderId);
+        }
+
+        function goToSlide(sliderId, index) {
+            const data = sliders[sliderId];
+            data.current = index;
+            updateSlider(sliderId);
+        }
+
+        // Initialize sliders
+        document.addEventListener('DOMContentLoaded', () => {
+            initSlider('avisSlider');
+        });
+
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const answer = button.nextElementSibling;
+                const isActive = answer.classList.contains('active');
+
+                document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('active'));
+                document.querySelectorAll('.faq-question').forEach(b => b.classList.remove('active'));
+
+                if (!isActive) {
+                    answer.classList.add('active');
+                    button.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
