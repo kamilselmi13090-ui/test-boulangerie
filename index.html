@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boulangerie Banette De La Frescoule</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lora:wght@400;500&family=Space+Mono:wght@400;700&display=swap">
+    <style>
+        :root {
+            --bg-primary: #F5F3F0;
+            --bg-secondary: #FFFFFF;
+            --accent-gold: #D4A574;
+            --accent-dark: #5C3D2E;
+            --text-primary: #5C3D2E;
+            --text-secondary: #8B7355;
+            --border-light: #E8E3DE;
+            --success: #7BA583;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root:not([data-theme="light"]) {
+                --bg-primary: #2B2520;
+                --bg-secondary: #3A3330;
+                --accent-gold: #C99A5D;
+                --text-primary: #F0EBE6;
+                --text-secondary: #D4C4B0;
+                --border-light: #4A4440;
+                --success: #8FBF9E;
+            }
+        }
+
+        :root[data-theme="dark"] {
+            --bg-primary: #2B2520;
+            --bg-secondary: #3A3330;
+            --accent-gold: #C99A5D;
+            --text-primary: #F0EBE6;
+            --text-secondary: #D4C4B0;
+            --border-light: #4A4440;
+            --success: #8FBF9E;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lora', 'Georgia', serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', 'Garamond', serif;
+            font-weight: 700;
+            text-wrap: balance;
+            color: var(--text-primary);
+        }
+
+        h1 { font-size: 3rem; line-height: 1.1; margin-bottom: 1rem; }
+        h2 { font-size: 2rem; margin-bottom: 1.5rem; margin-top: 2rem; }
+        h3 { font-size: 1.25rem; margin-bottom: 0.75rem; }
+
+        header {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-light);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-dark);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-primary);
+            margin-left: 2rem;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--accent-gold);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            padding: 4rem 0;
+        }
+
+        .hero-content h1 {
+            color: var(--accent-dark);
+            margin-bottom: 1rem;
+        }
+
+        .hero-text {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent-gold);
+            color: var(--bg-primary);
+            padding: 0.875rem 2rem;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            font-weight: 700;
+            transition: opacity 0.2s;
+        }
+
+        .cta-button:hover {
+            opacity: 0.9;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, var(--accent-gold) 0%, #E8D4B8 100%);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .products {
+            padding: 4rem 0;
+        }
+
+        .products h2 {
+            text-align: center;
+            color: var(--accent-dark);
+            margin-bottom: 3rem;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            padding: 1.5rem;
+            text-align: center;
+            transition: box-shadow 0.3s, transform 0.3s;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--accent-gold) 0%, #E8D4B8 100%);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .product-card h3 {
+            color: var(--accent-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .about {
+            padding: 4rem 0;
+            background: var(--bg-secondary);
+            border-radius: 2px;
+            margin: 4rem 0;
+        }
+
+        .about h2 {
+            text-align: center;
+            color: var(--accent-dark);
+            margin-bottom: 3rem;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .about-text, .about-values {
+            padding: 2rem;
+        }
+
+        .about-text h3, .about-values h3 {
+            color: var(--accent-dark);
+            margin-bottom: 1rem;
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .reviews {
+            padding: 4rem 0;
+        }
+
+        .reviews h2 {
+            text-align: center;
+            color: var(--accent-dark);
+            margin-bottom: 3rem;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .review-card {
+            background: var(--bg-secondary);
+            border-left: 4px solid var(--accent-gold);
+            padding: 2rem;
+            border-radius: 2px;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .stars {
+            color: var(--accent-gold);
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .review-author {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .review-text {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        .faq {
+            padding: 4rem 0;
+        }
+
+        .faq h2 {
+            text-align: center;
+            color: var(--accent-dark);
+            margin-bottom: 3rem;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+            border: 1px solid var(--border-light);
+            background: var(--bg-secondary);
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 1.5rem;
+            background: var(--bg-secondary);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Lora', serif;
+            font-size: 1rem;
+            color: var(--text-primary);
+            transition: background 0.3s, color 0.3s;
+            text-align: left;
+        }
+
+        .faq-question:hover {
+            background: var(--bg-primary);
+            color: var(--accent-gold);
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            font-weight: 700;
+            transition: transform 0.3s;
+        }
+
+        .faq-question.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: var(--bg-primary);
+        }
+
+        .faq-answer.active {
+            max-height: 500px;
+        }
+
+        .faq-answer p {
+            padding: 1.5rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        .info-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 4rem 0;
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .info-block h3 {
+            color: var(--accent-dark);
+            margin-bottom: 1rem;
+        }
+
+        .info-block p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .hours-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .hours-item:last-child {
+            border-bottom: none;
+        }
+
+        .day {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .time {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .contact-link {
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+
+        .contact-link:hover {
+            opacity: 0.8;
+        }
+
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-light);
+            padding: 2rem 16px;
+            margin-top: 4rem;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 2rem 0;
+            }
+
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.5rem; }
+
+            nav a {
+                margin-left: 1rem;
+                font-size: 0.85rem;
+            }
+
+            .hero-image {
+                height: 300px;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info-section {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-text, .about-values {
+                padding: 1rem 0;
+            }
+
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .faq-question {
+                font-size: 0.9rem;
+                padding: 1.25rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">Banette Frescoule</div>
+            <nav>
+                <a href="#produits">Produits</a>
+                <a href="#about">À Propos</a>
+                <a href="#avis">Avis</a>
+                <a href="#faq">FAQ</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Boulangerie Artisanale</h1>
+                <p class="hero-text">Depuis des générations, nous perpétuons l'art de la boulangerie française. Pains, viennoiseries et pâtisseries élaborés chaque jour avec les meilleurs ingrédients.</p>
+                <a href="#produits" class="cta-button">Découvrir nos produits</a>
+            </div>
+            <div class="hero-image">🥐</div>
+        </section>
+
+        <section class="products" id="produits">
+            <h2>Nos Spécialités</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image">🥖</div>
+                    <h3>Pain Tradition</h3>
+                    <p class="product-description">Baguette tradition croustillante avec une mie légère et aérée. Cuite au feu de bois selon nos recettes ancestrales. Préparée quotidiennement pour assurer fraîcheur et qualité optimale.</p>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">🥐</div>
+                    <h3>Croissant Beurre</h3>
+                    <p class="product-description">Croissant feuilleté aux courbes parfaites, préparé avec du vrai beurre de Normandie. Technique de laminage maîtrisée pour obtenir le feuilletage caractéristique français.</p>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">🍞</div>
+                    <h3>Pain Complet</h3>
+                    <p class="product-description">Pain riche en fibres, élaboré avec farines complètes biologiques. Source de nutriments essentiels, saveur authentique et texture généreuse pour une alimentation équilibrée.</p>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">🥐</div>
+                    <h3>Pain au Chocolat</h3>
+                    <p class="product-description">Feuilletage délicat garni de chocolat noir haut de gamme. Recette traditionnelle française parfaite pour petit-déjeuner ou collation gourmande.</p>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">🧁</div>
+                    <h3>Tarte aux Pommes</h3>
+                    <p class="product-description">Recette familiale transmise de génération en génération. Pommes de saison locales, pâte brisée maison. Dessert traditionnel français par excellence.</p>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">🍰</div>
+                    <h3>Éclair au Café</h3>
+                    <p class="product-description">Pâte à choux feuilletée garnie d'une crème pâtissière artisanale au café. Glaçage chocolat appliqué à la main, finition délicate et présentation soignée.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="about" id="about">
+            <h2>À Propos de Nous</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Notre Histoire</h3>
+                    <p>La Boulangerie Banette De La Frescoule est un établissement traditionnel français dédié à l'art de la boulangerie depuis plusieurs générations. Nous perpétuons les techniques ancestrales de fabrication du pain en utilisant des méthodes artisanales éprouvées.</p>
+                    <p style="margin-top: 1rem;">Chaque jour, nos boulangers se lèvent avant l'aube pour préparer vos pains et viennoiseries frais. Nous croyons en la qualité des ingrédients et en l'importance du savoir-faire traditionnel.</p>
+                </div>
+                <div class="about-values">
+                    <h3>Nos Valeurs</h3>
+                    <ul style="list-style: none; color: var(--text-secondary); line-height: 2;">
+                        <li>✓ Qualité des ingrédients sélectionnés</li>
+                        <li>✓ Aucun conservateur ou additif</li>
+                        <li>✓ Cuisson quotidienne artisanale</li>
+                        <li>✓ Recettes traditionnelles françaises</li>
+                        <li>✓ Soutien des producteurs locaux</li>
+                        <li>✓ Respect de l'environnement</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="reviews" id="avis">
+            <h2>Avis Clients</h2>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="stars">★★★★★</div>
+                        <span class="review-author">Marie D.</span>
+                    </div>
+                    <p class="review-text">"Un vrai régal ! Les croissants sont faits comme en Provence. L'équipe est chaleureuse et toujours prête à vous conseiller. C'est notre boulangerie préférée depuis 5 ans."</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="stars">★★★★★</div>
+                        <span class="review-author">Pierre M.</span>
+                    </div>
+                    <p class="review-text">"La qualité est constante, les pains sont toujours frais et croustillants. On sent que c'est du vrai travail artisanal. Bravo à toute l'équipe !"</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="stars">★★★★★</div>
+                        <span class="review-author">Sophie L.</span>
+                    </div>
+                    <p class="review-text">"Excellent rapport qualité. Le pain tradition est incomparable avec les pains de supermarché. Les pâtisseries sont divines et faites maison."</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="stars">★★★★☆</div>
+                        <span class="review-author">Jean P.</span>
+                    </div>
+                    <p class="review-text">"Très bonne boulangerie. Les horaires pourraient être un peu plus longs le week-end, mais sinon tout est parfait. Les éclairs sont incontournables !"</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq" id="faq">
+            <h2>Questions Fréquemment Posées</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>D'où proviennent vos ingrédients ?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Nous sélectionnons nos ingrédients auprès de producteurs locaux de confiance. Les farines proviennent de meuneries régionales, et nous travaillons directement avec les agriculteurs pour garantir la qualité. Pour le beurre, nous utilisons exclusivement du beurre de Normandie, reconnu pour sa qualité supérieure.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Quels sont vos horaires d'ouverture ?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Lundi à Vendredi : 6h30 - 19h30 | Samedi : 6h30 - 20h00 | Dimanche : 7h00 - 13h00. Nous fermons le lundi matin pour repos hebdomadaire. Consultez notre section Horaires pour plus de détails.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Faites-vous des commandes pour les événements ?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Oui ! Nous proposons des commandes spéciales pour les événements (mariages, anniversaires, réceptions). Contactez-nous au moins une semaine à l'avance pour discuter de vos besoins. Notre équipe sera ravie de créer des pièces personnalisées.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Proposez-vous des produits sans gluten ou vegan ?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Nous proposons une sélection de produits adaptés aux régimes spéciaux. Demandez à notre équipe en boutique quels produits nous avons actuellement en stock. Nous travaillons sur l'expansion de notre gamme pour répondre à différents besoins alimentaires.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>À quelle heure sont les pains les plus frais ?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Nos pains sont cuits tout au long de la journée pour assurer une disponibilité constante. Les meilleures heures sont généralement entre 7h-9h le matin, et 16h-18h l'après-midi, moments où les cuissons sont fraîchement sorties du four.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Conservez-vous le pain longtemps ?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Le pain tradition se conserve 2-3 jours dans un endroit frais et sec. Pour une fraîcheur optimale, consommez-le dans les 24 heures. Vous pouvez congeler le pain extra pour le conserver plus longtemps. Évitez le réfrigérateur qui accélère le vieillissement.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="info-section" id="horaires">
+            <div class="info-block">
+                <h3>Horaires</h3>
+                <div class="hours-item">
+                    <span class="day">Lun – Ven</span>
+                    <span class="time">6h30 – 19h30</span>
+                </div>
+                <div class="hours-item">
+                    <span class="day">Samedi</span>
+                    <span class="time">6h30 – 20h00</span>
+                </div>
+                <div class="hours-item">
+                    <span class="day">Dimanche</span>
+                    <span class="time">7h00 – 13h00</span>
+                </div>
+                <div class="hours-item">
+                    <span class="day">Fermé</span>
+                    <span class="time">Lundi (matin)</span>
+                </div>
+            </div>
+
+            <div class="info-block" id="contact">
+                <h3>Nous Trouver</h3>
+                <p>📍 <strong>Adresse</strong><br>Rue de la Frescoule<br>Frescoule, France</p>
+                <p style="margin-top: 1rem;">📞 <strong>Téléphone</strong><br><a href="tel:+33233123456" class="contact-link">+33 2 33 12 34 56</a></p>
+                <p style="margin-top: 1rem;">✉️ <strong>Email</strong><br><a href="mailto:contact@banette-frescoule.fr" class="contact-link">contact@banette-frescoule.fr</a></p>
+            </div>
+
+            <div class="info-block">
+                <h3>Engagements</h3>
+                <p>✓ Ingrédients sélectionnés<br>✓ Zéro conservateurs<br>✓ Cuisson quotidienne<br>✓ Recettes traditionnelles<br>✓ Produits locaux</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Boulangerie Banette De La Frescoule. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const answer = button.nextElementSibling;
+                const isActive = answer.classList.contains('active');
+
+                document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('active'));
+                document.querySelectorAll('.faq-question').forEach(b => b.classList.remove('active'));
+
+                if (!isActive) {
+                    answer.classList.add('active');
+                    button.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
